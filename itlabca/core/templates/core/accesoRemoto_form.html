@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Acceso{%endblock%}
+{% block content %}
+<br>
+<div class="container text-center">
+<div class="abs-center">
+<h3>Guardar acceso</h3>
+<form  class="border p-3 form" enctype="multipart/form-data" method="POST">
+{% csrf_token %}
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Nombre acceso</label>
+    <div class="col-sm-4">
+      {{ form.nombreAcceso }}
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Clave</label>
+    <div class="col-sm-4" >
+      {{ form.clave }}
+    </div>
+  </div>
+ 
+
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Observacion</label>
+    <div class="col-sm-4" >
+      {{ form.observacion }}
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Tipo acceso</label>
+    <div class="col-sm-4">
+      {{ form.tipoAcceso }}
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Equipo IT</label>
+    <div class="col-sm-4">
+      {{ form.idEquipoIt }}
+    </div>
+  </div>
+  
+ <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+</div>
+</div>
+{% endblock%}

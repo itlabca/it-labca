@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>CP - Login</title>
+  {% load static %}
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'core/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template-->
+  <link href="{% static 'core/css/sb-admin.css' %}" rel="stylesheet">
+
+</head>
+
+<body class="bg-dark">
+
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <center><div class="card-header" >Control PC</div></center>
+      <div class="card-body">
+        <form class="form-signin" method="POST">{% csrf_token %}
+        {% if form.non_field_errors %}
+                <p style="color:red">Usuario o contraseña incorrectos, prueba de nuevo.</p>
+        {% endif %}  
+            <label for="inputEmail">Usuario</label>       
+            <input type="text" id="id_username" class="form-control" placeholder="Usuario" required autofocus name="username">   
+            <br>        
+            <label for="inputPassword">Password</label>       
+            <input type="password" id="id_password"  class="form-control" placeholder="Password" required name="password"><br><br>                      
+          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" name="btnIngresar">Ingresar</button>     
+        </form>
+        <div class="text-center">        
+          <a class="d-block small" href="#">Forgot Password?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'core/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'core/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+</body>
+
+</html>

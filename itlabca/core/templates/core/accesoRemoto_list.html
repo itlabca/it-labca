@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Accesos{%endblock%}
+{% block content %}
+<br>
+    
+<br>
+<div class="panel panel-default">
+<div class="panel-heading"><center><h4>Accesos disponibles</h4></center></div><br>
+<table id="myTable" class="display nowrap" style="width:100%">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nombre acceso</td>
+            <th>Tipo acceso</th>
+            <th>Equipo IT</th>          
+            <th>Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for obj in object_list%}
+        <tr>
+            <td>{{ obj.nombreAcceso }}</td>
+            <td>{{ obj.get_acceso }}</td>
+            <td>{{ obj.idEquipoIt }}</td>           
+            <td>            
+                <a  class="btn btn-primary btn-circle" href="{% url 'core:updateAccesoRemoto' obj.pk %}">
+                                <span class="fa fa-edit"></span>
+                            </a>  
+                
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros de Accesos</h1>
+        {% endif %}
+    </tbody>
+</table>
+</div>
+
+{% endblock%}

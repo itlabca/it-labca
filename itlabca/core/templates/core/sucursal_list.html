@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Sucursal{%endblock%}
+{% block content %}
+<br>
+<div>
+          <table>
+                <tr>
+                    <td>&nbsp;&nbsp;<a class="btn btn-primary btn-circle" 
+                    onclick="return abrir_modal('{% url 'core:createSucursal' %}')" 
+                    href=""><span class="fa fa-plus-circle">
+                    </span> Nueva sucursal
+                    </a></a> </td>
+                </tr>        
+            </table>
+        </div>
+<br>
+<div class="panel panel-default">
+<div class="panel-heading"><center><h4>Sucursales disponilbes</h4></center></div><br>
+<table id="myTable" class="display nowrap" style="width:100%">
+    <thead class="thead-dark">
+        <tr>
+            <th>Sucursal</td>
+            <th>Direccion</th>
+            <th>Gerente sucursal</th>              
+            <th>Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for sucursal in object_list%}
+        <tr>
+            <td>{{ sucursal.nombreSucursal }}</td>  
+            <td>{{ sucursal.direccion }}</td>
+            <td>{{sucursal.gerenteSucursal}}</td>
+            <td>            
+                <a onclick="return abrir_modal ('{% url 'core:updateSucursal' sucursal.pk %}')"  class="btn btn-primary btn-circle" href="">
+                                <span class="fa fa-edit"></span>
+                            </a>               
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros de Sucursales</h1>
+        {% endif %}
+    </tbody>
+   
+</table>
+</div>
+
+{% endblock%}

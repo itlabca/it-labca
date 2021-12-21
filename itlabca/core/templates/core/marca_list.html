@@ -1,0 +1,46 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Marcas{%endblock%}
+{% block content %}
+<br>
+<div>
+    <table>
+          <tr>
+              <td>&nbsp;&nbsp;<a class="btn btn-primary btn-circle"  
+              onclick="return abrir_modal('{% url 'core:createMarca' %}')" 
+              href=""><span class="fa fa-plus-circle">
+              </span> Nueva marca
+              </a></a> </td>
+          </tr>        
+      </table>
+  </div>    
+<br>
+<div class="panel panel-default">
+<div class="panel-heading"><center><h4>Marcas disponilbes</h4></center></div><br>
+<table id="myTable" class="display nowrap" style="width:100%">
+    <thead class="thead-dark">
+        <tr>
+            <td>Nombre marca</td>
+            <td>Editar</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for marca in object_list %}
+        <tr>
+            <td>{{marca.nombreMarca}}</td>
+            <td>
+                <a onclick="return abrir_modal('{%  url 'core:updateMarca' marca.pk %}')" class="btn btn-primary btn-circle" href="">
+                <span class="fa fa-edit"></span></a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros de marcas</h1>
+        {% endif %}
+    </tbody>
+   
+</table>
+</div>
+
+{% endblock%}

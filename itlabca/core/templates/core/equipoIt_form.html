@@ -1,0 +1,96 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Mantenimiento{%endblock%}
+{% block content %}
+<br>
+<div class="container text-center">
+<div class="abs-center">
+<h3>Guardar equipo</h3>
+<form  class="border p-3 form" enctype="multipart/form-data" id="frmEquipo" method="POST" data-modelos-url="{% url 'core:load_modelo'%}" novalidate>
+{% csrf_token %}
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Tipo equipo</label>
+    <div class="col-sm-4">
+        {{ form.tipoEquipo }}
+    </div>
+</div>
+                               
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Alias equipo</label>
+    <div class="col-sm-4">
+        {{ form.aliasEquipo }}
+    </div>
+</div>
+
+
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Marca</label>
+    <div class="col-sm-4">
+        {{ form.marca }}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Modelo</label>
+    <div class="col-sm-4">
+        {{ form.modelo }}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Sucursal</label>
+    <div class="col-sm-4">
+        {{ form.sucursal }}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Area</label>
+    <div class="col-sm-4">
+        {{ form.area }}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Fecha ingreso</label>
+    <div class="col-sm-4">
+        {{ form.fechaIngreso}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Observacion</label>
+    <div class="col-sm-4">
+        {{ form.observacion }}
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Aplica acceso remoto</label>
+    <div class="col-sm-4">
+        {{ form.accesoRemoto }}
+    </div>
+</div>
+  
+ <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_marca").change(function(){
+        var url=$("#frmEquipo").attr("data-modelos-url");
+        var idMarcaId=$(this).val();
+        $.ajax({
+            url:url,
+            data:{
+                'marca':idMarcaId
+            },
+            success: function(data){
+                $("#id_modelo").html(data);
+            }
+        });
+    });
+</script>
+{% endblock%}

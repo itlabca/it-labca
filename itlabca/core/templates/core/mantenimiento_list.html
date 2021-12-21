@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Mantenimientos{%endblock%}
+{% block content %}
+<br>
+   
+<br>
+<div class="panel panel-default">
+<div class="panel-heading"><center><h4>Mantenimientos disponilbes</h4></center></div><br>
+<table id="myTable" class="display nowrap" style="width:100%">
+    <thead class="thead-dark">
+        <tr>
+            <td>Fecha mantenimiento</td>
+            <td>Observacion</td>
+            <td>Equipo IT</td>
+            <td>Editar</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for mantenimiento in object_list %}
+        <tr>
+            <td>{{mantenimiento.fechaMantenimiento}}</td>
+            <td>{{mantenimiento.observacion}}</td>
+            <td>{{mantenimiento.idEquipoIt}}</td>
+            <td>
+                <a class="btn btn-primary btn-circle" href="{%  url 'core:updateMantenimiento' mantenimiento.pk %}">
+                <span class="fa fa-edit"></span></a>
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros de mantenimientos </h1>
+        {% endif %}
+    </tbody>
+   
+</table>
+</div>
+
+{% endblock%}

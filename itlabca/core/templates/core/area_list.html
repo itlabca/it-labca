@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Areas{%endblock%}
+{% block content %}
+<br>
+<div>
+    <table>
+          <tr>
+              <td>&nbsp;&nbsp;<a class="btn btn-primary btn-circle"  
+              onclick="return abrir_modal('{% url 'core:createArea' %}')" 
+              href=""><span class="fa fa-plus-circle">
+              </span> Nueva area
+              </a></a> </td>
+          </tr>        
+      </table>
+  </div>    
+<br>
+<div class="panel panel-default">
+<div class="panel-heading"><center><h4>Areas disponilbes</h4></center></div><br>
+<table id="myTable" class="display nowrap" style="width:100%">
+    <thead class="thead-dark">
+        <tr>
+            <th>Nombre Area</td>          
+            <th>Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for area in object_list%}
+        <tr>
+            <td>{{ area.nombreArea }}</td>           
+            <td>            
+                <a onclick="return abrir_modal ('{% url 'core:updateArea' area.pk %}')"  class="btn btn-primary btn-circle" href="">
+                                <span class="fa fa-edit"></span>
+                            </a>               
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros de Areas</h1>
+        {% endif %}
+    </tbody>
+   
+</table>
+</div>
+
+{% endblock%}

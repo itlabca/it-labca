@@ -1,0 +1,42 @@
+<div class="modal-dialog modal-ms">
+    <div class="modal-content">
+    {% if sucursal %}
+    <form role="form" action="{% url 'core:updateSucursal' sucursal.pk %}" method="post"  class="form-inline">
+    {% else %}
+    <form role="form" action="{% url 'core:createSucursal' %}" method="post"  class="form-inline">
+    {% endif %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <center>Editar/Crear Sucursal</center>
+        </div><br>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            {% csrf_token %} 
+            <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Nombre Sucursal</label>
+    <div class="col-sm-4">
+      {{ form.nombreSucursal }}
+    </div>
+  </div>
+  <br/>
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Direccion</label>
+    <div class="col-sm-4" >
+      {{ form.direccion }}
+    </div>
+  </div><br>
+  <div class="form-group row">
+    <label for="colFormLabelSm" class="col-sm-5 col-form-label col-form-label-sm">Gerente sucursal</label>
+    <div class="col-sm-4" >
+      {{ form.gerenteSucursal }}
+    </div>
+  </div><br>
+            <center>
+            <button type="submit" class="btn btn-success" ><span class="fa fa-save"></span> Guardar</button>
+            <a href="{% url 'core:sucursal' %}" class="btn btn-danger"><span class="fa fa-undo"></span> Cancelar</a>
+            </center><br>
+        </div>
+    </div>
+</form>
+</div>
+</div> 

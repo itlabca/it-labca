@@ -1,0 +1,49 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Tipo equipo{%endblock%}
+{% block content %}
+<br>
+<div>
+    <table>
+          <tr>
+              <td>&nbsp;&nbsp;<a class="btn btn-primary btn-circle"  
+              onclick="return abrir_modal('{% url 'core:createTipoEquipo' %}')" 
+              href=""><span class="fa fa-plus-circle">
+              </span> Nuevo tipo de equipo
+              </a></a> </td>
+          </tr>        
+      </table>
+  </div>    
+<br>
+<div class="panel panel-default">
+<div class="panel-heading"><center><h4>Tipos de equipos disponilbes</h4></center></div><br>
+<table id="myTable" class="display nowrap" style="width:100%">
+    <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>Nombre tipo equipo</td>          
+            <th>Editar</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if object_list %}
+        {% for obj in object_list%}
+        <tr>
+            <td>{{ obj.idTipoEquipo }}</td>  
+            <td>{{ obj.nombreEquipo }}</td>           
+            <td>            
+                <a onclick="return abrir_modal ('{% url 'core:updateTipoEquipo' obj.pk %}')"  class="btn btn-primary btn-circle" href="">
+                                <span class="fa fa-edit"></span>
+                            </a>               
+            </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <h1>No hay registros de tipos de equipo</h1>
+        {% endif %}
+    </tbody>
+   
+</table>
+</div>
+
+{% endblock%}
